@@ -55,22 +55,24 @@ public class XPSteal extends JavaPlugin implements Listener, CommandExecutor {
     	if (!(sender instanceof Player))
     		return true;
     	
+    	String msg = "";
+    	
     	if (args.length == 0) {
-	    	String msg = ChatColor.RED + "You currently have " + calcExp((Player)sender) + " XP." + ChatColor.RESET;
-	    	sender.sendMessage(chatPrefix + msg);
-	        
-	    	return true;
+    		msg = ChatColor.RED + "You currently have " + calcExp((Player)sender) + " XP." + ChatColor.RESET;
+       	} else {
+    		Player target = Bukkit.getPlayer(args[0]);
+    		if (target == null) { 
+    			msg = ChatColor.RED + "Player does not exist." + ChatColor.RESET;
+    			sender.sendMessage(chatPrefix + msg);
+    			return false;
+    		}
+    		else {
+    			msg = ChatColor.RED + target.getDisplayName() + " currently has " + calcExp(target) + " XP." + ChatColor.RESET;
+    		}
     	}
     	
-    	Player target = Bukkit.getPlayer(args[0]);
-    	if (target != null) {
-    		String msg = ChatColor.RED + target.getDisplayName() + " currently has " + calcExp(target) + " XP." + ChatColor.RESET;
-	    	sender.sendMessage(chatPrefix + msg);
-	        
-	    	return true;
-    	}
-    	
-    	return false;
+		sender.sendMessage(chatPrefix + msg);
+    	return true;
     }
     
     private int calcExp(Player p) {
