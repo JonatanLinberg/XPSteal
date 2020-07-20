@@ -1,5 +1,13 @@
 name: XPSteal
 main: common.XPSteal
-version: 1.1.5
+version: 1.2.0
 api-version: 1.16
 commands:
+   XPSteal:
+      description: XPSteal command
+      usage: /<command>
+      permission: XPSteal.cmd
+permissions:
+  XPSteal.cmd:
+    description: Access to the basic XPSteal command
+    default: true
