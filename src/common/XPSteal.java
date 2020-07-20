@@ -67,7 +67,11 @@ public class XPSteal extends JavaPlugin implements Listener, CommandExecutor {
     			return false;
     		}
     		else {
-    			msg = ChatColor.RED + target.getDisplayName() + " currently has " + calcExp(target) + " XP." + ChatColor.RESET;
+    			if (target.getName().equals(sender.getName())) {
+    				msg = ChatColor.RED + "You currently have " + calcExp((Player)sender) + " XP." + ChatColor.RESET;
+    			} else {
+    				msg = ChatColor.RED + target.getDisplayName() + " currently has " + calcExp(target) + " XP." + ChatColor.RESET;
+    			}
     		}
     	}
     	
